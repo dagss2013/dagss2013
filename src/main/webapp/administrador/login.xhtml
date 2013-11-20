@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../plantillas/plantillaGlobal.xhtml">
+
+            <ui:define name="izquierda">
+                izquierda
+            </ui:define>
+
+            <ui:define name="contenido">
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel for="login" value="Login:" />
+                        <h:inputText id="login" value=""/>
+                        
+                        <h:outputLabel for="password" value="Password:" />
+                        <h:inputText id="password" value=""/>
+                    </h:panelGrid>                    
+                    
+                    <h:commandButton value="Login" action="">
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
