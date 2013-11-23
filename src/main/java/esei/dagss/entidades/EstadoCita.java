@@ -1,10 +1,22 @@
 /*
  Práctica Java EE 7, DAGSS 2013/14 (ESEI, U. de Vigo)
  */
-
 package esei.dagss.entidades;
 
-
 public enum EstadoCita {
-    PLANIFICADA, ANULADA, COMPLETADA, AUSENTE
+
+    PLANIFICADA ("PLANIFICADA"), 
+    ANULADA     ("ANULADA"), 
+    COMPLETADA  ("COMPLETADA"), 
+    AUSENTE     ("AUSENTE");
+
+    private final String etiqueta;
+
+    private EstadoCita(String etiqueta) {
+        this.etiqueta = etiqueta;
+    }
+
+    public String getEtiqueta() {
+        return etiqueta;
+    }
 }

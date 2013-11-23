@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import javax.persistence.Version;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Null;
 
@@ -44,7 +45,10 @@ public class Receta implements Serializable {
 
     @ManyToOne(optional = true)
     Farmacia farmacia;
-    
+
+    @Version
+    Long version;
+
     public Receta() {
     }
 
@@ -116,7 +120,5 @@ public class Receta implements Serializable {
     public void setFarmacia(Farmacia farmacia) {
         this.farmacia = farmacia;
     }
-    
-    
 
 }

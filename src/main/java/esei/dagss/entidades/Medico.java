@@ -8,13 +8,14 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-
 @Entity
-@DiscriminatorValue(value="MEDICO")
+@DiscriminatorValue(value = "MEDICO")
 public class Medico extends Usuario implements Serializable {
+
     @Size(min = 0, max = 10)
     @Column(length = 10, nullable = false)
     String numeroColegiado;
@@ -34,7 +35,7 @@ public class Medico extends Usuario implements Serializable {
 
     @ManyToOne
     CentroSalud centroSalud;
-    
+
     @Size(min = 9, max = 9)
     @Column(length = 9)
     String telefono;
@@ -43,16 +44,22 @@ public class Medico extends Usuario implements Serializable {
     @Pattern(regexp = ".+@.+")
     @Column(length = 25)
     String email;
-    
+
     @ManyToOne
     TipoAgenda tipoAgenda;
 
+    @Version
+    Long version;
+
     public Medico() {
         super();
+        this.tipoUsuario = TipoUsuario.MEDICO;  // Es necesario hacerlo explícitamente?        
     }
 
     public Medico(String numeroColegiado, String dni, String nombre, String apellidos, CentroSalud centroSalud, String telefono, String email, TipoAgenda tipoAgenda) {
-        super();
+        super();        
+        this.tipoUsuario = TipoUsuario.MEDICO;  // Es necesario hacerlo explícitamente?        
+
         this.numeroColegiado = numeroColegiado;
         this.dni = dni;
         this.nombre = nombre;
@@ -127,7 +134,4 @@ public class Medico extends Usuario implements Serializable {
         this.tipoAgenda = tipoAgenda;
     }
 
-
-    
-    
 }

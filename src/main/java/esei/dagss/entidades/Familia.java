@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Version;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -22,6 +23,10 @@ public class Familia implements Serializable {
     @Column(length = 50, nullable = false)
     String nombre;
 
+    @Version
+    Long version;
+    
+    
     public Familia() {
     }
 

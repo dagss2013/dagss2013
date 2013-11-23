@@ -6,5 +6,18 @@ package esei.dagss.entidades;
 
 
 public enum TipoUsuario {
-    ADMINISTRADOR, PACIENTE, MEDICO, FARMACIA;    
+    ADMINISTRADOR ("ADMINISTRADOR"), 
+    PACIENTE      ("PACIENTE"), 
+    MEDICO        ("MEDICO"), 
+    FARMACIA      ("FARMACIA");    
+    
+    private final String etiqueta;
+
+    private TipoUsuario(String etiqueta) {
+        this.etiqueta = etiqueta;
+    }
+   
+    public String getEtiqueta() {
+        return etiqueta;
+    }    
 }

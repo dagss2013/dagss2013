@@ -1,7 +1,6 @@
 /*
  Práctica Java EE 7, DAGSS 2013/14 (ESEI, U. de Vigo)
  */
-
 package esei.dagss.entidades;
 
 import java.io.Serializable;
@@ -9,28 +8,36 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.Version;
 import javax.validation.constraints.Size;
 
 @Entity
-@DiscriminatorValue(value="FARMACIA")
-public class Farmacia extends Usuario  implements Serializable {
+@DiscriminatorValue(value = "FARMACIA")
+public class Farmacia extends Usuario implements Serializable {
+
     @Size(min = 0, max = 75)
     @Column(length = 75, nullable = false)
-    String nombreFarmacia;  
-    
+    String nombreFarmacia;
+
     @Size(min = 9, max = 9)
     @Column(length = 9, nullable = false)
-    String nif;    
-    
+    String nif;
+
     @Embedded
     Direccion direccion;
 
+    @Version
+    Long version;
+
     public Farmacia() {
         super();
+        this.tipoUsuario = TipoUsuario.FARMACIA;  // Es necesario hacerlo explícitamente?        
     }
-       
+
     public Farmacia(String nombreFarmacia, String nif, Direccion direccion) {
         super();
+        this.tipoUsuario = TipoUsuario.FARMACIA;  // Es necesario hacerlo explícitamente?        
+
         this.nombreFarmacia = nombreFarmacia;
         this.nif = nif;
         this.direccion = direccion;
@@ -59,6 +66,5 @@ public class Farmacia extends Usuario  implements Serializable {
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
     }
-    
-    
+
 }

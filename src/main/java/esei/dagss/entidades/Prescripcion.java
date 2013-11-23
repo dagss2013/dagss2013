@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
@@ -28,7 +29,7 @@ public class Prescripcion implements Serializable {
     @Size(min = 0, max = 255)
     String indicaciones;
 
-    @ManyToOne            
+    @ManyToOne
     Tratamiento tratamiento;
 
     @ManyToOne
@@ -37,8 +38,11 @@ public class Prescripcion implements Serializable {
     @Min(1)
     Integer dosis;
 
-    @OneToMany(mappedBy = "prescripcion", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "prescripcion", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Receta> recetas = new ArrayList<Receta>();
+
+    @Version
+    Long version;
 
     public Prescripcion() {
     }

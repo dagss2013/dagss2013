@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
@@ -37,6 +38,9 @@ public class Medicamento implements Serializable {
 
     @Min(1)
     Integer numeroDosis;
+
+    @Version
+    Long version;
 
     public Medicamento() {
     }
@@ -96,6 +100,5 @@ public class Medicamento implements Serializable {
     public void setNumeroDosis(Integer numeroDosis) {
         this.numeroDosis = numeroDosis;
     }
-    
-    
+
 }

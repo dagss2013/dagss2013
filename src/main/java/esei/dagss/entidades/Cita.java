@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.validation.constraints.Min;
 
 @Entity
@@ -41,6 +42,10 @@ public class Cita implements Serializable {
     
     @Enumerated(EnumType.STRING)
     EstadoCita estado;
+        
+    @Version
+    Long version;    
+    
     
     public Cita() {
     }

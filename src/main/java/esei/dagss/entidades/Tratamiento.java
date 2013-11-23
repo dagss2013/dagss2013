@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import javax.persistence.Version;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -24,24 +25,27 @@ public class Tratamiento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    
+
     @ManyToOne
     Paciente paciente;
-    
+
     @ManyToOne
     Medico medico;
-    
-    @Size(min = 0, max = 255)    
+
+    @Size(min = 0, max = 255)
     String comentarios;
-    
+
     @Temporal(javax.persistence.TemporalType.DATE)
     Date fechaInicio;
-    
+
     @Temporal(javax.persistence.TemporalType.DATE)
-    Date fechaFin;    
-    
-    @OneToMany(mappedBy = "tratamiento", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    Date fechaFin;
+
+    @OneToMany(mappedBy = "tratamiento", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Prescripcion> prescipciones = new ArrayList<Prescripcion>();
+
+    @Version
+    Long version;
 
     public Tratamiento() {
     }
@@ -109,6 +113,5 @@ public class Tratamiento implements Serializable {
     public void setPrescipciones(List<Prescripcion> prescipciones) {
         this.prescipciones = prescipciones;
     }
-    
-    
+
 }

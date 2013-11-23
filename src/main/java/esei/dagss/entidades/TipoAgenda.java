@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
@@ -27,18 +28,21 @@ public class TipoAgenda implements Serializable {
     @Size(min = 0, max = 50)
     @Column(length = 50, nullable = false)
     String descripcion;
-    
+
     @Enumerated(EnumType.STRING)
     TipoTurno tipoTurno;
-    
+
     @Temporal(TemporalType.TIME)
     Date horaInico;
-    
+
     @Temporal(TemporalType.TIME)
     Date horaFin;
-    
+
     @Min(value = 1)
     Integer duracionCita;
+
+    @Version
+    Long version;
 
     public TipoAgenda() {
     }
@@ -99,6 +103,4 @@ public class TipoAgenda implements Serializable {
         this.duracionCita = duracionCita;
     }
 
-
-    
 }

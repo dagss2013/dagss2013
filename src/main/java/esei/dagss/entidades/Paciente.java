@@ -9,13 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-
 @Entity
-@DiscriminatorValue(value="PACIENTE")
+@DiscriminatorValue(value = "PACIENTE")
 public class Paciente extends Usuario implements Serializable {
+
     @Size(min = 10, max = 10)
     @Column(length = 10, nullable = false)
     String numeroTarjetaSanitaria;
@@ -23,12 +24,12 @@ public class Paciente extends Usuario implements Serializable {
     @Size(min = 13, max = 13)
     @Column(length = 13, nullable = false)
     String numeroSeguridadSocial;
-    
+
     @Size(min = 9, max = 9)
     @Pattern(regexp = "[0-9]{8}[A-Z]")
     @Column(length = 9, nullable = false)
     String dni;
-    
+
     @Size(min = 0, max = 30)
     @Column(length = 30, nullable = false)
     String nombre;
@@ -39,25 +40,32 @@ public class Paciente extends Usuario implements Serializable {
 
     @Embedded
     Direccion direccion;
-    
+
     @Size(min = 9, max = 9)
-    @Column(length = 9)    
+    @Column(length = 9)
     String telefono;
-    
+
     @Size(min = 0, max = 25)
     @Pattern(regexp = ".+@.+")
-    @Column(length = 25)    
+    @Column(length = 25)
     String email;
-    
+
     @ManyToOne
     Medico medico;
+
+    @Version
+    Long version;
     
+
     public Paciente() {
         super();
+        this.tipoUsuario = TipoUsuario.PACIENTE;  // Es necesario hacerlo explícitamente?        
     }
 
     public Paciente(String numeroTarjetaSanitaria, String numeroSeguridadSocial, String dni, String nombre, String apellidos, Direccion direccion, String telefono, String email, Medico medico) {
         super();
+        this.tipoUsuario = TipoUsuario.PACIENTE;  // Es necesario hacerlo explícitamente?        
+
         this.numeroTarjetaSanitaria = numeroTarjetaSanitaria;
         this.numeroSeguridadSocial = numeroSeguridadSocial;
         this.dni = dni;
@@ -141,5 +149,4 @@ public class Paciente extends Usuario implements Serializable {
         this.medico = medico;
     }
 
-    
 }

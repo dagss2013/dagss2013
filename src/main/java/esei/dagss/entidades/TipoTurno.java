@@ -9,5 +9,16 @@ package esei.dagss.entidades;
  * @author ribadas
  */
 public enum TipoTurno {
-    MANANA, TARDE;
+    MANANA ("MAÑANA"), 
+    TARDE  ("TARDE");
+    
+    private final String etiqueta;
+
+    private TipoTurno(String etiqueta) {
+        this.etiqueta = etiqueta;
+    }
+
+    public String getEtiqueta() {
+        return etiqueta;
+    }        
 }

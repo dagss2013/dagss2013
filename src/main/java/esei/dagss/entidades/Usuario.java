@@ -18,13 +18,15 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
+import javax.persistence.Version;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)  // Una única tabla compartida por todas las  subclases
 @DiscriminatorColumn(name = "TIPO_USUARIO",
-                     discriminatorType = DiscriminatorType.STRING,
-                     length = 20)  
+        discriminatorType = DiscriminatorType.STRING,
+        length = 20)
 public abstract class Usuario implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
@@ -34,14 +36,17 @@ public abstract class Usuario implements Serializable {
 
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     Date ultimoAcceso;
-    
+
     @Enumerated(EnumType.STRING)
-    @Column(name = "TIPO_USUARIO",length = 20)
+    @Column(name = "TIPO_USUARIO", length = 20)
     TipoUsuario tipoUsuario;
 
     @Column(length = 64)
     String password;
-    
+
+    @Version
+    Long version;
+
     public Usuario() {
         this.fechaAlta = Calendar.getInstance().getTime();
         this.ultimoAcceso = Calendar.getInstance().getTime();
@@ -97,7 +102,5 @@ public abstract class Usuario implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-    
+
 }
