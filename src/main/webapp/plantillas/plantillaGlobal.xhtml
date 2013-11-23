@@ -7,7 +7,7 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/general.css"/>
+        <h:outputStylesheet name="./css/dagss.css"/>
         <title>Facelets Template</title>
     </h:head>
 
@@ -15,9 +15,16 @@
         <div id="pagina">
             <div id="encabezado">
                 <h2> Proyecto Java EE "Receta electrónica" </h2>
+                <h3> <ui:insert name="tituloPagina">Left</ui:insert> </h3>
+                <h:messages layout="table" styleClass="errores"/>
             </div>
             <div id="cuerpo">
                 <div id="izquierda">
+                    <h:form rendered="#{autenticacionControlador.usuarioAutenticado}"> 
+                        <h:commandLink value="Desconectar" 
+                                       action="#{autenticacionControlador.doLogOut()}"/>
+                    </h:form>
+                    
                     <ui:insert name="izquierda">Left</ui:insert>
                 </div>
                 <div id="contenido">

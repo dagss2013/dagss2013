@@ -8,6 +8,10 @@
 
         <ui:composition template="./../plantillas/plantillaGlobal.xhtml">
 
+            <ui:define name="tituloPagina">
+                Acceso administradores
+            </ui:define>
+
             <ui:define name="izquierda">
                 izquierda
             </ui:define>
@@ -15,14 +19,13 @@
             <ui:define name="contenido">
                 <h:form>
                     <h:panelGrid columns="2">
-                        <h:outputLabel for="login" value="Login:" />
-                        <h:inputText id="login" value=""/>
-                        
-                        <h:outputLabel for="password" value="Password:" />
-                        <h:inputText id="password" value=""/>
+                        <h:outputLabel for="login" value="Nombre de usuario:" />
+                        <h:inputText id="login" value="#{administradorControlador.login}"/>
+                        <h:outputLabel for="password" value="Contraseña:" />
+                        <h:inputText id="password" value="#{administradorControlador.password}"/>
                     </h:panelGrid>                    
-                    
-                    <h:commandButton value="Login" action="">
+
+                    <h:commandButton value="Login" action="#{administradorControlador.doLogin()}"/>
                 </h:form>
             </ui:define>
 
