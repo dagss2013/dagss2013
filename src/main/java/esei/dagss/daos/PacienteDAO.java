@@ -18,7 +18,6 @@ public class PacienteDAO extends GenericoDAO<Paciente> {
         Query q = em.createQuery("SELECT object(p) FROM Paciente AS p "
                 + "  WHERE p.dni = :dni");
         q.setParameter("dni", dni);
-
         return filtrarResultadoUnico(q);
     }
 

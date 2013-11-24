@@ -22,7 +22,7 @@
                         <h:outputLabel for="login" value="Nombre de usuario:" />
                         <h:inputText id="login" value="#{administradorControlador.login}"/>
                         <h:outputLabel for="password" value="Contraseña:" />
-                        <h:inputText id="password" value="#{administradorControlador.password}"/>
+                        <h:inputSecret id="password" value="#{administradorControlador.password}"/>
                     </h:panelGrid>                    
 
                     <h:commandButton value="Login" action="#{administradorControlador.doLogin()}"/>

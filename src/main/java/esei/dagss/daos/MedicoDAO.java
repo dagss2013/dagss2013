@@ -24,7 +24,9 @@ public class MedicoDAO extends GenericoDAO<Medico> {
 
     public Medico buscarPorNumeroColegiado(String numeroColegiado) {
         Query q = em.createQuery("SELECT object(m) FROM Medico AS m "
-                + "  WHERE m.numeroColegiado = :dni");
+                + "  WHERE m.numeroColegiado = :numeroColegiado");
+        q.setParameter("numeroColegiado", numeroColegiado);
+        
         return filtrarResultadoUnico(q);
     }
 

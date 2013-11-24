@@ -28,7 +28,8 @@ import javax.persistence.Version;
 public abstract class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     Long id;
 
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)

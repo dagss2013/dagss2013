@@ -34,6 +34,8 @@ public class UsuarioDAO extends GenericoDAO<Usuario> {
         
         usuario = buscarPorId(idUsuario);
         
+        System.out.println("> Usuario passwd :"+usuario.getPassword());
+        
         if (usuario != null) {
             if (comprobarTipo(usuario, tipo)) {
                 if (comprobarPassword(passwordPlano, usuario.getPassword())) {

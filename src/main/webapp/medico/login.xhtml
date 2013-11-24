@@ -16,7 +16,18 @@
             </ui:define>
 
             <ui:define name="contenido">
-                contenido                
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel for="dni" value="DNI:" />
+                        <h:inputText id="dni" value="#{medicoControlador.dni}"/>
+                        <h:outputLabel for="numColegiado" value="Núm. colegiado:" />
+                        <h:inputText id="numColegiado" value="#{medicoControlador.numeroColegiado}"/>                        
+                        <h:outputLabel for="password" value="Contraseña:" />
+                        <h:inputSecret id="password" value="#{medicoControlador.password}"/>
+                    </h:panelGrid>                    
+
+                    <h:commandButton value="Login" action="#{medicoControlador.doLogin()}"/>
+                </h:form>
             </ui:define>
 
         </ui:composition>
