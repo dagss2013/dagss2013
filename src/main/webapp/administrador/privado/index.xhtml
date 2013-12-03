@@ -1,22 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
         <ui:composition template="./../../plantillas/plantillaGlobal.xhtml">
 
             <ui:define name="tituloPagina">
-                tituloPagina
+                Menú principal de administradores
             </ui:define>            
-            
+
             <ui:define name="izquierda">
-                izquierda
+
             </ui:define>
 
             <ui:define name="contenido">
-                contenido
+                <h:form>
+                    <ul>
+                        <li> <h:commandLink value="Gestión de administradores" action="#{administradorControlador.doGestionAdministradores()}" /></li>
+                        <li> <h:commandLink value="Gestión de tipos de agenda" action="#{administradorControlador.doGestionTiposAgenda()}" /></li>                        
+                        <li> <h:commandLink value="Gestión de centros de salud" action="#{administradorControlador.doGestionCentrosSalud()}" /></li>
+                        <li> <h:commandLink value="Gestión de médicos" action="#{administradorControlador.doGestionMedicos()}" /></li>
+                        <li> <h:commandLink value="Gestión de pacientes" action="#{administradorControlador.doGestionPacientes()}" /></li>
+                        <li> <h:commandLink value="Gestión de farmacias" action="#{administradorControlador.doGestionFarmacias()}" /></li>
+                        <li> <h:commandLink value="Gestión de medicamentos" action="#{administradorControlador.doGestionMedicamentos()}" /></li>                    
+                    </ul>                 
+                </h:form>
             </ui:define>
 
         </ui:composition>

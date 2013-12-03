@@ -132,4 +132,41 @@ public class AdministradorControlador implements Serializable {
         }
         return destino;
     }
+    
+    public String doGestionAdministradores() {
+    
+        return "listaAdministradores";
+    }
+    
+    public String doGestionCentrosSalud() {
+    
+        return "listaCentrosSalud";
+    }
+    
+    public String doGestionTiposAgenda() {
+    
+        return "listaTiposAgenda";
+    }
+    
+    public String doGestionMedicos() {
+    
+        return "listaMedicos";
+    }
+
+    public String doGestionPacientes() {
+    
+        return "listaPacientes";
+    }    
+
+    public String doGestionFarmacias() {
+    
+        return "listaFarmacias";
+    }    
+    
+    public String doGestionMedicamentos() {
+    
+        return "listaMedicamentos";
+    }    
+    
+    
 }
