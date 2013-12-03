@@ -4,12 +4,16 @@
 package esei.dagss.controladores.medico;
 
 import esei.dagss.controladores.autenticacion.AutenticacionControlador;
+import esei.dagss.daos.CitaDAO;
 import esei.dagss.daos.MedicoDAO;
+import esei.dagss.entidades.Cita;
 import esei.dagss.entidades.Medico;
 import esei.dagss.entidades.TipoUsuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -27,13 +31,22 @@ public class MedicoControlador implements Serializable {
     private String dni;
     private String numeroColegiado;
     private String password;
+    private List<Cita> listaCitas;
 
     @Inject
     private AutenticacionControlador autenticacionControlador;
-
+    @Inject
+    private CitaDAO citaDAO;
+    
     @EJB
     private MedicoDAO medicoDAO;
 
+    @PostConstruct
+    public void inicializaCitas()
+    {
+        listaCitas = citaDAO.buscarCitasHoy(medicoActual.getId());
+    }
+    
     /**
      * Creates a new instance of AdministradorControlador
      */
