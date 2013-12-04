@@ -29,8 +29,6 @@ public class AdministradorControlador implements Serializable {
     private Administrador administradorActual;
     private String login;
     private String password;
-    private String password2;
-    private boolean administradorNuevo;
 
     @Inject
     private AutenticacionControlador autenticacionControlador;
@@ -46,10 +44,9 @@ public class AdministradorControlador implements Serializable {
 
     @PostConstruct
     public void inicializar() {
-        administradores = administradorDAO.busarTodos();
+        administradores = administradorDAO.buscarTodos();
         if ((administradores != null) && (administradores.size() > 0)) {
             administradorActual = administradores.get(0);
-            administradorNuevo = false;
         }
     }
 
@@ -85,13 +82,6 @@ public class AdministradorControlador implements Serializable {
         this.password = password;
     }
 
-    public String getPassword2() {
-        return password2;
-    }
-
-    public void setPassword2(String password2) {
-        this.password2 = password2;
-    }
 
     public Administrador getAdministradorActual() {
         return administradorActual;
@@ -101,15 +91,6 @@ public class AdministradorControlador implements Serializable {
         this.administradorActual = administradorActual;
     }
 
-    public boolean isAdministradorNuevo() {
-        return administradorNuevo;
-    }
-
-    public void setAdministradorNuevo(boolean administradorNuevo) {
-        this.administradorNuevo = administradorNuevo;
-    }
-
-    
 
     public String doLogin() {
         String destino = null;
@@ -135,37 +116,37 @@ public class AdministradorControlador implements Serializable {
     
     public String doGestionAdministradores() {
     
-        return "listaAdministradores";
+        return "administradores/listaAdministradores";
     }
     
     public String doGestionCentrosSalud() {
     
-        return "listaCentrosSalud";
+        return "centrossalud/listaCentrosSalud";
     }
     
     public String doGestionTiposAgenda() {
     
-        return "listaTiposAgenda";
+        return "centrossalud/listaTiposAgenda";
     }
     
     public String doGestionMedicos() {
     
-        return "listaMedicos";
+        return "medicos/listaMedicos";
     }
 
     public String doGestionPacientes() {
     
-        return "listaPacientes";
+        return "pacientes/listaPacientes";
     }    
 
     public String doGestionFarmacias() {
     
-        return "listaFarmacias";
+        return "farmacias/listaFarmacias";
     }    
     
     public String doGestionMedicamentos() {
     
-        return "listaMedicamentos";
+        return "medicamentos/listaMedicamentos";
     }    
     
     

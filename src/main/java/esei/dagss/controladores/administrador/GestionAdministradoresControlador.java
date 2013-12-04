@@ -1,7 +1,6 @@
 /*
  Proyecto Java EE, DAGSS-2013
  */
-
 package esei.dagss.controladores.administrador;
 
 import esei.dagss.daos.AdministradorDAO;
@@ -19,8 +18,12 @@ import javax.enterprise.context.RequestScoped;
 @Named(value = "gestionAdministradoresControlador")
 @RequestScoped
 public class GestionAdministradoresControlador {
+
     private List<Administrador> administradores;
     private Administrador administradorEnEdicion;
+    private String password1;
+    private String password2;
+
     @EJB
     private AdministradorDAO administradorDAO;
 
@@ -29,10 +32,10 @@ public class GestionAdministradoresControlador {
      */
     public GestionAdministradoresControlador() {
     }
-    
+
     @PostConstruct
     private void inicializarGestionAdministradores() {
-        administradores = administradorDAO.busarTodos();
+        administradores = administradorDAO.buscarTodos();
         if ((administradores != null) && (!administradores.isEmpty())) {
             administradorEnEdicion = administradores.get(0);
         }
@@ -53,7 +56,55 @@ public class GestionAdministradoresControlador {
     public void setAdministradorEnEdicion(Administrador administradorEnEdicion) {
         this.administradorEnEdicion = administradorEnEdicion;
     }
+
+    public String getPassword1() {
+        return password1;
+    }
+
+    public void setPassword1(String password1) {
+        this.password1 = password1;
+    }
+
     
     
-    
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
+    }
+
+    public String doEditar(Administrador administradorSeleccionado) {
+        if (administradorSeleccionado != null) {
+            this.administradorEnEdicion = administradorSeleccionado;
+            return "editarAdministrador";
+        } else {
+            return null;
+        }
+    }
+
+    public String doEliminar(Administrador administradorSeleccionado) {
+// lammar a dAO
+
+        return "listaAdministradores";
+    }
+
+    public String doNuevo() {
+        this.administradorEnEdicion = new Administrador();
+        return "editarAdministrador";
+    }
+
+    public String doGuardar() {
+        // llamar a DAO
+        return "listaAdminsitradores";
+    }
+
+    public String doCancelar() {
+        if ((administradores != null) && (!administradores.isEmpty())) {
+            administradorEnEdicion = administradores.get(0);
+        }
+        return "listaAdminsitradores";
+    }
+
 }

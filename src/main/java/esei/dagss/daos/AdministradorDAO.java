@@ -21,7 +21,7 @@ public class AdministradorDAO extends GenericoDAO<Administrador> {
         return filtrarResultadoUnico(q);
     }
 
-    public List<Administrador> busarTodos() {
+    public List<Administrador> buscarTodos() {
         Query q = em.createQuery("SELECT object(a) FROM Administrador AS a ");
         return q.getResultList();
     }

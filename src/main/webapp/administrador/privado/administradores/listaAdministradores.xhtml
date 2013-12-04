@@ -7,27 +7,27 @@
 
     <body>
 
-        <ui:composition template="./../../plantillas/plantillaGlobal.xhtml">
+        <ui:composition template="./../../../plantillas/plantillaGlobal.xhtml">
 
             <ui:define name="tituloPagina">
                 Gestión de administradores
             </ui:define>
 
             <ui:define name="izquierda">
-                
+                <ui:include src="./../../../plantillas/menuAdministrador.xhtml"/>                
             </ui:define>
 
             <ui:define name="contenido">
                 <h:form>
                     <h:dataTable value="#{gestionAdministradoresControlador.administradores}"
-                                 var="administrador">
+                                 var="administrador" styleClass="tablaBase">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputLabel value="ID"/>
                             </f:facet>
                             <h:outputLabel value="#{administrador.id}"/>
                         </h:column>
-                        
+
                         <h:column>
                             <f:facet name="header">
                                 <h:outputLabel value="Nombre"/>
@@ -41,7 +41,7 @@
                             </f:facet>
                             <h:outputLabel value="#{administrador.login}"/>
                         </h:column>
-                        
+
                         <h:column>
                             <f:facet name="header">
                                 <h:outputLabel value="Ultimo acceso"/>
@@ -57,9 +57,9 @@
                             <h:commandButton value="Editar" action="#{gestionAdministradoresControlador.doEditar(administrador)}"/>
                             <h:commandButton value="Eliminar" action="#{gestionAdministradoresControlador.doEliminar(administrador)}"/>
                         </h:column>
-                        
+
                     </h:dataTable>
-                
+
                     <h:commandButton value="Nuevo Administrador" action="#{#gestionAdministradoresControlador.doNuevoAdministrador()}"/>
                 </h:form>                    
             </ui:define>

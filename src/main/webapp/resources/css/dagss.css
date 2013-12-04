@@ -56,3 +56,22 @@
 }
 
 
+.tablaBase {
+	border-width: 1px;
+	border-spacing: 0px;
+	border-style: solid;
+	border-color: black;
+	border-collapse: collapse;
+}
+.tablaBase th {
+	border-width: 1px;
+	padding: 1px;
+	border-style: solid;
+	border-color: black;
+}
+.tablaBase td {
+	border-width: 1px;
+	padding: 1px;
+	border-style: solid;
+	border-color: black;
+}
