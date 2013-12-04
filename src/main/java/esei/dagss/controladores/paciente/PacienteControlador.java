@@ -146,9 +146,9 @@ public class PacienteControlador implements Serializable
         return destino;
     }
     
-    public String doNuevaCita() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+//    public String doNuevaCita()
+//    {
+//        
+//    }
 
 }
