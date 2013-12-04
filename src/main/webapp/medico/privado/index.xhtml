@@ -20,7 +20,25 @@
 
             <ui:define name="contenido">
                 <h:form>  
-                    <p:dataTable value="#{medicoControlador.listaCitas}"
+                    <p:dataTable value="" var="cita">  
+                        <p:column headerText="Paciente">  
+                            <h:outputText value="PEPE" />  
+                        </p:column>  
+
+                        <p:column headerText="Hora Prevista">  
+                            <h:outputText value="16:00" />  
+                        </p:column>  
+
+                        <p:column headerText="Estado de la cita">  
+                            <h:outputText value="PLANIFICADA" />  
+                        </p:column>  
+
+                        <p:column style="width:4%">  
+                            <p:commandButton value="Ver Cita" action="detallesCita.xhtml" ajax="false" />
+                        </p:column>
+                    </p:dataTable>
+
+                    <p:dataTable value="#{gestionCitasMedicoControlador.listaCitas}"
                                  var="cita">  
                         <p:column headerText="Paciente">  
                             <h:outputText value="#{cita.paciente.nombre}" />  
@@ -37,7 +55,8 @@
                         <p:column headerText="Acciones">  
                             <h:outputText value="ver" />  
                         </p:column>  
-                    </p:dataTable>  
+                         
+                    </p:dataTable>
                 </h:form>
             </ui:define>
         </ui:composition>

@@ -5,19 +5,20 @@ package esei.dagss.controladores.administrador;
 
 import esei.dagss.daos.AdministradorDAO;
 import esei.dagss.entidades.Administrador;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 
 /**
  *
  * @author dagss
  */
 @Named(value = "gestionAdministradoresControlador")
-@RequestScoped
-public class GestionAdministradoresControlador {
+@ConversationScoped
+public class GestionAdministradoresControlador implements Serializable {
 
     private List<Administrador> administradores;
     private Administrador administradorEnEdicion;
