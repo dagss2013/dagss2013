@@ -50,7 +50,7 @@ public class Medico extends Usuario implements Serializable {
 
     @Version
     Long version;
-
+    
     public Medico() {
         super();
         this.tipoUsuario = TipoUsuario.MEDICO;  // Es necesario hacerlo explícitamente?        

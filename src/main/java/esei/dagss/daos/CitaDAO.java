@@ -21,9 +21,8 @@ public class CitaDAO  extends GenericoDAO<Cita>{
     public List<Cita> buscarCitasHoy(Long id)
     {
         Query q = em.createQuery("SELECT object(c) FROM Cita AS c WHERE c.medico.id = :id AND "
-                + "c.fecha = :fecha ORDER BY c.hora");
+                + "c.fecha = DATE(NOW()) ORDER BY c.hora");
         q.setParameter("id", id);
-        q.setParameter("fecha", new Date() );
         return q.getResultList();
         
     }

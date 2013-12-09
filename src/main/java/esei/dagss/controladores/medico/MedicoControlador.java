@@ -31,7 +31,6 @@ public class MedicoControlador implements Serializable {
     private String dni;
     private String numeroColegiado;
     private String password;
-    private List<Cita> listaCitas;
 
     @Inject
     private AutenticacionControlador autenticacionControlador;
@@ -40,12 +39,6 @@ public class MedicoControlador implements Serializable {
     
     @EJB
     private MedicoDAO medicoDAO;
-
-    @PostConstruct
-    public void inicializaCitas()
-    {
-        listaCitas = citaDAO.buscarCitasHoy(medicoActual.getId());
-    }
     
     /**
      * Creates a new instance of AdministradorControlador
@@ -84,7 +77,7 @@ public class MedicoControlador implements Serializable {
     public void setMedicoActual(Medico medicoActual) {
         this.medicoActual = medicoActual;
     }
-
+    
     public String doLogin() {
         String destino = null;
         if (((dni == null) && (numeroColegiado == null)) || (password == null)) {
@@ -110,5 +103,11 @@ public class MedicoControlador implements Serializable {
             }
         }
         return destino;
+    }
+    
+    //Acciones
+    public String doShowCita()
+    {
+        return "detallesCita";
     }
 }

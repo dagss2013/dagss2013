@@ -146,9 +146,9 @@ public class PacienteControlador implements Serializable
         return destino;
     }
     
-    public String doNuevaCita()
-    {
-        
-    }
+//    public String doNuevaCita()
+//    {
+//        
+//    }
 
 }
