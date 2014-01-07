@@ -38,8 +38,14 @@ public class UsuarioDAO extends GenericoDAO<Usuario> {
         
         if (usuario != null) {
             if (comprobarTipo(usuario, tipo)) {
-                if (comprobarPassword(passwordPlano, usuario.getPassword())) {
+                if (usuario.getPassword().equals("")) {
                     resultado = true;
+                } else if (passwordPlano.equals("") && !usuario.getPassword().equals("")) {
+                    resultado = false;
+                } else {
+                    if (comprobarPassword(passwordPlano, usuario.getPassword())) {
+                        resultado = true;
+                    }
                 }
             }
         }

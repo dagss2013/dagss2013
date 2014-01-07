@@ -7,7 +7,7 @@ INSERT INTO `CENTROSALUD` VALUES (1,'Centro salud pepe','988888888',1,'12345','C
 INSERT INTO `MEDICO` VALUES (2,'Gomez Gomez','11111111A','a@a.com','2013-11-24 01:04:42','Antonio','11111','lUTQ2zg2voe4Z5OqpITFIjcBziNH10d6','988123456','MEDICO','2013-11-24 01:04:42',1,1,1);
 
 -- Paciente con dni "22222222B", num. tarjeta sanitaria "2222222222", num seg. social "2222222222222" y contraseña "22222"
-INSERT INTO `PACIENTE` VALUES (3,'Benito Carmona','22222222B','b@b.com','2013-11-24 01:04:42','Ana','2222222222222','2222222222','q2TlgetAofpy1T4n/gGvmZV31DZc81xN','981123456','PACIENTE','2013-11-24 01:04:42',1,'12345','C/. jander clander, nº 2, 4º N','Coruña','Coruña',2);
+INSERT INTO `PACIENTE` VALUES (3,'Benito Carmona','22222222B','b@b.com','2013-11-24 01:04:42','Ana','2222222222222','2222222222','','981123456','PACIENTE','2013-11-24 01:04:42',1,'12345','C/. jander clander, nº 2, 4º N','Coruña','Coruña',2);
 
 -- Farmacia con nif "33333333C" y contraseña "33333"
 INSERT INTO `FARMACIA` VALUES (4,'2013-11-24 01:04:42','33333333C','Farmacia de prueba','/QpUw+ZRH3ndoNb3N4gRpT5cz0C7pT9v','FARMACIA','2013-11-24 01:04:42',1,'12345','C/. farmacia, nº 2, 4º N','Coruña','Coruña');

@@ -7,6 +7,7 @@ import esei.dagss.controladores.autenticacion.AutenticacionControlador;
 import esei.dagss.daos.CitaDAO;
 import esei.dagss.daos.MedicoDAO;
 import esei.dagss.daos.PacienteDAO;
+import esei.dagss.daos.UsuarioDAO;
 import esei.dagss.entidades.Cita;
 import esei.dagss.entidades.Medico;
 import esei.dagss.entidades.Paciente;
@@ -35,6 +36,8 @@ public class PacienteControlador implements Serializable
     private String numeroTarjetaSanitaria;
     private String numeroSeguridadSocial;
     private String password;
+    private String password1;
+    private String password2;
     private List<Cita> citas;
 
     @Inject
@@ -44,6 +47,8 @@ public class PacienteControlador implements Serializable
     private PacienteDAO pacienteDAO;
     @EJB
     private CitaDAO citaDAO;
+    @EJB
+    private UsuarioDAO usuarioDAO;
 
     /**
      * Creates a new instance of AdministradorControlador
@@ -54,8 +59,10 @@ public class PacienteControlador implements Serializable
     
     @PostConstruct
     public void constructCitas()
-    {
-        this.citas = citaDAO.buscarPorPacienteID(pacienteActual.getId());
+    {   
+        if (pacienteActual != null) {
+            this.citas = citaDAO.buscarPorPacienteID(pacienteActual.getId());
+        }
     }
 
     public Paciente getPacienteActual()
@@ -108,6 +115,22 @@ public class PacienteControlador implements Serializable
         this.password = password;
     }
     
+    public String getPassword1() {
+        return password1;
+    }
+
+    public void setPassword1(String password1) {
+        this.password1 = password1;
+    }
+    
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
+    }
+    
     public List<Cita> getCitas()
     {
         return citas;
@@ -134,16 +157,36 @@ public class PacienteControlador implements Serializable
             if (paciente == null) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "No existe ningún paciente con los datos indicados", ""));
             } else {
-                if (autenticacionControlador.autenticarUsuario(paciente.getId(), password,
-                                                               TipoUsuario.PACIENTE.getEtiqueta().toLowerCase())) {
+                if (autenticacionControlador.autenticarUsuario(
+                        paciente.getId(), 
+                        password,
+                        TipoUsuario.PACIENTE.getEtiqueta().toLowerCase())) {
+                    
                     pacienteActual = paciente;
-                    destino = "privado/index";
+                    
+                    if (paciente.getPassword().equals("")) {
+                        destino = "privado/cambiarPassword";
+                    } else {
+                        destino = "privado/index";
+                    }
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Credenciales de acceso incorrectas", ""));
                 }
             }
         }
         return destino;
+    }
+    
+    public String doUpdatePassword()
+    {
+        if (password1.equals(password2)) {
+            pacienteActual.setPassword(password1);
+            
+            usuarioDAO.actualizarPassword(pacienteActual.getId(), password1);   
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Se ha guardado la contraseña", ""));
+        }
+        
+        return "index";
     }
     
 //    public String doNuevaCita()
