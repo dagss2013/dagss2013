@@ -8,9 +8,13 @@
             <p> <h:outputText value="Opciones"/> </p>
 
             <h:panelGrid columns="1">
-                <h:commandLink value="Paciente" action="index" />
+                <h:commandLink value="Citas médicas" action="index" />
             </h:panelGrid>
+            
+            <h:panelGrid columns="1">
+                <h:commandLink value="Modificar datos personales" action="#{gestionPacienteControlador.doModificar()}" />
+            </h:panelGrid>
+            
         </h:form>
     </ui:composition>
 </html>
-
