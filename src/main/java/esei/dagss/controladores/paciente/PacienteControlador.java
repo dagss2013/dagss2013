@@ -38,15 +38,12 @@ public class PacienteControlador implements Serializable
     private String password;
     private String password1;
     private String password2;
-    private List<Cita> citas;
 
     @Inject
     private AutenticacionControlador autenticacionControlador;
 
     @EJB
     private PacienteDAO pacienteDAO;
-    @EJB
-    private CitaDAO citaDAO;
     @EJB
     private UsuarioDAO usuarioDAO;
 
@@ -58,11 +55,8 @@ public class PacienteControlador implements Serializable
     }
     
     @PostConstruct
-    public void constructCitas()
+    public void inicializar()
     {   
-        if (pacienteActual != null) {
-            this.citas = citaDAO.buscarPorPacienteID(pacienteActual.getId());
-        }
     }
 
     public Paciente getPacienteActual()
@@ -129,11 +123,6 @@ public class PacienteControlador implements Serializable
 
     public void setPassword2(String password2) {
         this.password2 = password2;
-    }
-    
-    public List<Cita> getCitas()
-    {
-        return citas;
     }
 
     public String doLogin()
