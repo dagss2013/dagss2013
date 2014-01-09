@@ -7,10 +7,10 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form>
-            <p:messages/>
+        <h:form id="principal"> 
+            <p:messages id="mensajesError"/>
 
-            <p:panel id="listaCentrosSalud" header="Lista centros de salud">
+            <p:outputPanel id="listaCentrosSalud">
                 <p:dataTable value="#{centroSaludControlador.centrosSalud}" var="centroSalud">
 
                     <p:column headerText="Id">
@@ -23,8 +23,13 @@
                     <p:column headerText="Domicilio">
                         <p:outputLabel value="#{centroSalud.direccion.domicilio}" />
                     </p:column>
+
                     <p:column headerText="Localidad">
                         <p:outputLabel value="#{centroSalud.direccion.localidad}" />
+                    </p:column>
+
+                    <p:column headerText="Provincia">
+                        <p:outputLabel value="#{centroSalud.direccion.provincia}" />
                     </p:column>
 
                     <p:column headerText="Telefono">
@@ -34,34 +39,40 @@
                     <p:column>
                         <p:commandButton value="Editar"
                                          actionListener="#{centroSaludControlador.doEditar(centroSalud)}"   
-                                         process="listaCentrosSalud"
-                                         update="centroSaludActual"
+                                         process=":principal:listaCentrosSalud"
+                                         update=":principal:centroSaludActual"
                                          />                       
                         <p:commandButton value="Eliminar"
                                          actionListener="#{centroSaludControlador.doEliminar(centroSalud)}" 
-                                         process="listaCentrosSalud"
-                                         update="listaCentrosSalud"
+                                         process=":principal:listaCentrosSalud"
+                                         update=":principal:listaCentrosSalud"
                                          />                       
 
                     </p:column>        
                 </p:dataTable>
 
                 <p:commandButton value="Nuevo" actionListener="#{centroSaludControlador.doNuevo()}"
-                                 process="listaCentrosSalud"
-                                 update="centroSaludActual"/>
-            </p:panel>
+                                 process=":principal:listaCentrosSalud"
+                                 update=":principal:centroSaludActual :principal:mensajesError"/>
+            </p:outputPanel>
 
-            <p:panel id="centroSaludActual">
+            <p:outputPanel id="centroSaludActual">
                 <p:panelGrid columns="2">
                     <p:panelGrid columns="2">
-                        <p:outputLabel value="Nombre:" />
+                        <p:outputLabel value="Nombre" />
                         <p:inputText value="#{centroSaludControlador.centroSaludEnEdicion.nombre}" required="true" requiredMessage="Falta nombre de centro"/>
 
-                        <p:outputLabel value="Domicilio:" />
+                        <p:outputLabel value="Domicilio" />
                         <p:inputText value="#{centroSaludControlador.centroSaludEnEdicion.direccion.domicilio}" required="true" requiredMessage="Falta direccion de centro"/>
 
                         <p:outputLabel value="Localidad" />
                         <p:inputText value="#{centroSaludControlador.centroSaludEnEdicion.direccion.localidad}" required="true" requiredMessage="Falta localidad de centro"/>
+
+                        <p:outputLabel value="Cod. postal" />
+                        <p:inputText value="#{centroSaludControlador.centroSaludEnEdicion.direccion.codigoPostal}" required="true" requiredMessage="Falta cod. postal de centro"/>
+
+                        <p:outputLabel value="Provincia" />
+                        <p:inputText value="#{centroSaludControlador.centroSaludEnEdicion.direccion.provincia}" required="true" requiredMessage="Falta provincia de centro"/>
 
                         <p:outputLabel value="Telefono" />
                         <p:inputText value="#{centroSaludControlador.centroSaludEnEdicion.telefono}" required="true" requiredMessage="Falta telefono de centro"/>
@@ -69,17 +80,17 @@
                     </p:panelGrid>
                     <p:panelGrid columns="1">
                         <p:commandButton value="Guardar" actionListener="#{centroSaludControlador.doGuardar()}"
-                                         process="centroSaludActual"
-                                         update="listaCentrosSalud"/>
+                                         process=":principal:centroSaludActual"
+                                         update=":principal:listaCentrosSalud :principal:mensajesError"/>
                         <p:commandButton value="Cancelar" actionListener="#{centroSaludControlador.doCancelar()}"
-                                         process="centroSaludActual"
-                                         update="centroSaludActual"/>
+                                         process=":principal:centroSaludActual"
+                                         update=":principal:centroSaludActual :principal:mensajesError"/>
                     </p:panelGrid>
 
                 </p:panelGrid>
 
                 <p:commandButton value="Volver" action="#{centroSaludControlador.doVolver()}"/>
-            </p:panel>
+            </p:outputPanel>
 
 
         </h:form>

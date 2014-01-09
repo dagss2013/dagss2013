@@ -10,6 +10,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
@@ -32,6 +33,11 @@ public class CentroSaludControlador implements Serializable {
      * Creates a new instance of CentroSaludControlador
      */
     public CentroSaludControlador() {
+    }
+
+    @PostConstruct
+    public void inicializar() {
+        centrosSalud = centroSaludDAO.buscarTodos();
     }
 
     public List<CentroSalud> getCentrosSalud() {
@@ -64,8 +70,6 @@ public class CentroSaludControlador implements Serializable {
     }
 
     public void doNuevo() {
-        System.out.println(">>> entra en nuevo");
-        
         centroSaludEnEdicion = new CentroSalud();
         centroSaludEnEdicion.setDireccion(new Direccion());
         esNuevo = true;
@@ -77,13 +81,15 @@ public class CentroSaludControlador implements Serializable {
     }
 
     public void doGuardar() {
-        System.out.println("Entra en guardar ...... ");
         if (esNuevo) {
+            // Crea un nuevo centro de salud
             centroSaludDAO.crear(centroSaludEnEdicion);
-        }
-        else {
+        } else {
+            // Actualiza un centro de salud
             centroSaludDAO.actualizar(centroSaludEnEdicion);
         }
+        // Actualiza lista de centros de salud a mostrar
+        centrosSalud = centroSaludDAO.buscarTodos();
     }
 
     public void doCancelar() {
@@ -92,7 +98,7 @@ public class CentroSaludControlador implements Serializable {
     }
 
     public String doVolver() {
-        
+
         return "../index?faces-redirect=true";
     }
 

@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -25,6 +27,9 @@ public class GestionAdministradoresControlador implements Serializable {
     private String password1;
     private String password2;
 
+    @Inject
+    Conversation conversation;
+    
     @EJB
     private AdministradorDAO administradorDAO;
 
@@ -36,6 +41,11 @@ public class GestionAdministradoresControlador implements Serializable {
 
     @PostConstruct
     private void inicializarGestionAdministradores() {
+        if (conversation.isTransient()) {
+            conversation.begin();
+        }
+        
+        
         administradores = administradorDAO.buscarTodos();
         if ((administradores != null) && (!administradores.isEmpty())) {
             administradorEnEdicion = administradores.get(0);
@@ -108,4 +118,11 @@ public class GestionAdministradoresControlador implements Serializable {
         return "listaAdminsitradores";
     }
 
+    
+    public String doVolver() {
+        if (!conversation.isTransient()) {
+            conversation.end();
+        }
+        return "../index";
+    }
 }
