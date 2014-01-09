@@ -10,7 +10,7 @@
         <ui:composition template="./../../plantillas/plantillaGlobal.xhtml">
 
             <ui:define name="tituloPagina">
-                Menú principal de pacientes
+                Lista de recetas
             </ui:define>            
             
             <ui:define name="izquierda">
@@ -19,55 +19,51 @@
 
             <ui:define name="contenido">
                 <h:form>
-                    <h:dataTable value="#{gestionPacienteControlador.citas}"
-                                 var="cita" styleClass="tablaBase">
+                    <h:dataTable value="#{gestionPacienteControlador.recetas}"
+                                 var="receta" styleClass="tablaBase">
                         
                         <h:column>
                             <f:facet name="header">
-                                <h:outputLabel value="Fecha"/>
+                                <h:outputLabel value="Cantidad"/>
                             </f:facet>
-                            <h:outputLabel value="#{cita.fecha}">
-                                <f:convertDateTime pattern="dd/MM/yyyy"/>
-                            </h:outputLabel>
+                            <h:outputLabel value="#{receta.cantidad}"/>
                         </h:column>
 
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputLabel value="Hora"/>
-                            </f:facet>
-                            <h:outputLabel value="#{cita.hora}">
-                                <f:convertDateTime pattern="hh:mm"/>
-                            </h:outputLabel>
-                        </h:column>
-                        
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputLabel value="Duración"/>
-                            </f:facet>
-                            <h:outputLabel value="#{cita.duracion} min"/>
-                        </h:column>
-                        
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputLabel value="Médico"/>
-                            </f:facet>
-                            <h:outputLabel value="#{cita.medico.nombre} #{cita.medico.apellidos}"/>
-                        </h:column>
-                        
                         <h:column>
                             <f:facet name="header">
                                 <h:outputLabel value="Estado"/>
                             </f:facet>
-                            <h:outputLabel value="#{cita.estado}"/>
+                            <h:outputLabel value="#{receta.estado}"/>
                         </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Farmacia"/>
+                            </f:facet>
+                            <h:outputLabel value="#{receta.farmacia}"/>
+                        </h:column>                        
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Fecha inicio validez"/>
+                            </f:facet>
+                            <h:outputLabel value="#{receta.inicioValidez}"/>
+                        </h:column>  
                         
                         <h:column>
                             <f:facet name="header">
-                                <h:outputLabel value="Aciones"/>
+                                <h:outputLabel value="Fecha fin validez"/>
                             </f:facet>
-                            <h:commandButton value="Cancelar" action="#{gestionPacienteControlador.doCancelar(cita)}" onclick="return confirm('¿Estás seguro?')"/>
-                        </h:column>
-
+                            <h:outputLabel value="#{receta.finValidez}"/>
+                        </h:column> 
+                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Prescripción"/>
+                            </f:facet>
+                            <h:outputLabel value="#{receta.prescripcion}"/>
+                        </h:column>     
+                        
                     </h:dataTable>
                 </h:form>        
             </ui:define>

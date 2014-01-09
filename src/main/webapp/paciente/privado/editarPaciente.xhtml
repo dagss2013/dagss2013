@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../plantillas/plantillaGlobal.xhtml">
+
+            <ui:define name="tituloPagina">
+                Modificar datos personales
+            </ui:define>
+
+            <ui:define name="izquierda">
+                <ui:include src="./../../plantillas/menuPaciente.xhtml"/>
+            </ui:define>
+
+            <ui:define name="contenido">
+                <h:form>
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="Nombre (*):" for="nombre" />
+                        <h:inputText id="nombre" value="#{gestionPacienteControlador.pacienteActual.nombre}" title="Nombre" required="true" requiredMessage="Debe introducirse un nombre"/>
+                        <h:message for="nombre"/>
+                        
+                        <h:outputLabel value="Apellidos (*):" for="apellidos" />
+                        <h:inputText id="apellidos" value="#{gestionPacienteControlador.pacienteActual.apellidos}" title="Apellidos" required="true" requiredMessage="Debe introducirse los apellidos"/>
+                        <h:message for="apellidos"/>
+                        
+                        <h:outputLabel value="Código postal (*):" for="codigoPostal" />
+                        <h:inputText id="codigoPostal" value="#{gestionPacienteControlador.pacienteActual.direccion.codigoPostal}" title="Codigo postal" required="true" requiredMessage="Debe introducirse un código postal"/>
+                        <h:message for="codigoPostal"/>
+                        
+                        <h:outputLabel value="Domicilio (*):" for="domicilio" />
+                        <h:inputText id="domicilio" value="#{gestionPacienteControlador.pacienteActual.direccion.domicilio}" title="Domicilio" required="true" requiredMessage="Debe introducirse un domicilio"/>
+                        <h:message for="domicilio"/>
+                        
+                        <h:outputLabel value="Localidad (*):" for="localidad" />
+                        <h:inputText id="localidad" value="#{gestionPacienteControlador.pacienteActual.direccion.localidad}" title="Localidad" required="true" requiredMessage="Debe introducirse una localidad"/>
+                        <h:message for="localidad"/>
+                        
+                        <h:outputLabel value="Provincia (*):" for="provincia" />
+                        <h:inputText id="provincia" value="#{gestionPacienteControlador.pacienteActual.direccion.provincia}" title="Provincia" required="true" requiredMessage="Debe introducirse una provincia"/>
+                        <h:message for="provincia"/>
+                        
+                        <h:outputLabel value="DNI (*):" for="dni" />
+                        <h:inputText id="dni" value="#{gestionPacienteControlador.pacienteActual.dni}" title="DNI" required="true" requiredMessage="Debe introducirse un DNI"/>
+                        <h:message for="dni"/>
+                        
+                        <h:outputLabel value="Email (*):" for="email" />
+                        <h:inputText id="email" value="#{gestionPacienteControlador.pacienteActual.email}" title="Email" required="true" requiredMessage="Debe introducirse un email"/>
+                        <h:message for="email"/>
+
+                        <h:outputLabel value="Contraseña:" for="password" />
+                        <h:inputSecret id="password" value="#{gestionPacienteControlador.password1}" title="Password"/>
+                        <h:message for="password"/>
+
+                        <h:outputLabel value="Repetir contraseña:" for="password2" />
+                        <h:inputSecret id="password2" value="#{gestionPacienteControlador.password2}" title="Password2"/>
+                        <h:message for="password2"/>
+
+                    </h:panelGrid>
+                    <h:commandButton value="Guardar" action="#{gestionPacienteControlador.doGuardar()}" onclick="return confirm('¿Estás seguro?')"/>
+                    <h:commandButton value="Cancelar" immediate="true" action="index"/>
+                </h:form>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
