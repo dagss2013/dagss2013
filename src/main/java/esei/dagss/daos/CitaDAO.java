@@ -24,12 +24,25 @@ public class CitaDAO  extends GenericoDAO<Cita>{
                 + "c.fecha = DATE(NOW()) ORDER BY c.hora");
         q.setParameter("id", id);
         return q.getResultList();
-        
     }
     
     public List<Cita> buscarPorPacienteID(Long id) {
         Query q = em.createQuery("SELECT object(c) FROM Cita AS c WHERE c.paciente.id = :id");
         q.setParameter("id", id);
         return q.getResultList();
-    }  
+    }
+    
+    public List<Cita> buscarPorMedicoId(Long id) {
+        Query q = em.createQuery("SELECT object(c) FROM Cita AS c WHERE c.medico.id = :id");
+        q.setParameter("id", id);
+        return q.getResultList();
+    }
+    
+    public List<Cita> buscarPorMedicoYFecha(Long medId, Date fecha) {
+        Query q = em.createQuery("SELECT object(c) FROM Cita AS c WHERE c.medico.id = :id AND c.fecha = :date");
+        q.setParameter("id", medId);
+        q.setParameter("date", fecha);
+        return q.getResultList();
+    }
+
 }

@@ -67,8 +67,8 @@
                             </f:facet>
                             <h:commandButton value="Cancelar" action="#{gestionPacienteControlador.doCancelar(cita)}" onclick="return confirm('¿Estás seguro?')"/>
                         </h:column>
-
                     </h:dataTable>
+                    <h:commandButton value="Nueva" action="#{gestionPacienteControlador.doNuevaCita()}" />
                 </h:form>        
             </ui:define>
 

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../plantillas/plantillaGlobal.xhtml">
+
+            <ui:define name="tituloPagina">
+                Seleccionar Fecha para Cita
+            </ui:define>
+
+            <ui:define name="izquierda">
+                <ui:include src="./../../plantillas/menuPaciente.xhtml"/>
+            </ui:define>
+
+            <ui:define name="contenido">
+                <h:form>
+                    <h:panelGrid columns="1">
+                        <h:outputLabel value="Fecha cita:" for="fecha" />
+                        <h:inputText id="fecha" value="#{gestionPacienteControlador.citaEnEdicion.fecha}" title="fecha" >
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:inputText>
+                    </h:panelGrid>
+                    <h:commandButton value="Aceptar" action="#{gestionPacienteControlador.doSeleccionarHoraCita()}"/>
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>
+
